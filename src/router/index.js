@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import ManufactureList from "../views/ManufactureList.vue";
+import DynamicRouteMatching from "../views/DynamicRouteMatching.vue";
+// import ManufactureList from "../views/ManufactureList.vue";
 // import AboutView from "../views/AboutView.vue";
 
 Vue.use(VueRouter);
@@ -13,10 +14,16 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/manufacture-list",
-    name: "ManufactureList",
-    component: ManufactureList,
+    path: "/dynamic-route-matching",
+    name: "DynamicRouteMatching",
+    component: DynamicRouteMatching,
+    props: true, //値を渡すことを許可
   },
+  // {
+  //   path: "/manufacture-list",
+  //   name: "ManufactureList",
+  //   component: ManufactureList,
+  // },
   // {
   //   path: "/about",
   //   name: "about",
