@@ -6,16 +6,26 @@
 
 <script>
 import axios from "axios";
+
 export default {
-  data() {
-    return {
-      info: null,
-    };
+  methods: {
+    run() {
+      let result;
+      // ----- start 非同期処理 -----
+      axios
+        .get("https://api.coindesk.com/v1/bpi/currentprice.json") //非同期処理
+        .then(() => {
+          //非同期処理終了時に実行されるメソッド
+          console.log("非同期処理終了");
+          result = "完了";
+        });
+      // ----- end 非同期処理 -----
+      const message = "非同期処理";
+      console.log(message + result);
+    },
   },
-  mounted() {
-    axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-      .then((response) => (this.info = response));
+  created() {
+    this.run();
   },
 };
 </script>
