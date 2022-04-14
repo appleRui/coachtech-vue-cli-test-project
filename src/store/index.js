@@ -5,12 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 1,
+    count: 0,
   },
-  getters: {
-    dubble: (state, getters) => {
-      console.log(getters);
-      return state.count * 2;
+  mutations: {
+    incrementMutation(state) {
+      state.count++;
     },
   },
 });

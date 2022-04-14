@@ -1,6 +1,16 @@
 <template>
   <div id="app">
+    <button @click="increase">増加</button>
     <p>{{ $store.state.count }}</p>
-    <p>{{ $store.getters.dubble }}</p>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    increase() {
+      this.$store.commit("incrementMutation");
+    },
+  },
+};
+</script>
