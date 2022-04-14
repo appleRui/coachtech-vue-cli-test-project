@@ -4,9 +4,13 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  state: {
+    count: 1,
+  },
+  getters: {
+    dubble: (state, getters) => {
+      console.log(getters);
+      return state.count * 2;
+    },
+  },
 });
