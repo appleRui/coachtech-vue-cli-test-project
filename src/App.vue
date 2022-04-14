@@ -1,31 +1,32 @@
 <template>
   <div id="app">
-    {{ info }}
+    <h1>ビットコイン 価格</h1>
+    <ul>
+      <li v-for="currency in info" :key="currency.code">
+        {{ currency.code }} : {{ currency.rate_float | currencydecimal }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
 export default {
-  methods: {
-    run() {
-      let result;
-      // ----- start 非同期処理 -----
-      axios
-        .get("https://api.coindesk.com/v1/bpi/currentprice.json") //非同期処理
-        .then(() => {
-          //非同期処理終了時に実行されるメソッド
-          console.log("非同期処理終了");
-          result = "完了";
-        });
-      // ----- end 非同期処理 -----
-      const message = "非同期処理";
-      console.log(message + result);
-    },
+  data() {
+    return {
+      info: null,
+    };
   },
-  created() {
-    this.run();
+  async mounted() {
+    const response = await axios.get(
+      "https://api.coindesk.com/v1/bpi/currentprice.json"
+    );
+    this.info = response.data.bpi;
+  },
+  filters: {
+    currencydecimal(value) {
+      return value.toFixed(2);
+    },
   },
 };
 </script>
