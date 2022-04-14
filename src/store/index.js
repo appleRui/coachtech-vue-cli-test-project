@@ -7,9 +7,13 @@ export default new Vuex.Store({
   state: {
     count: 0,
   },
-  mutations: {
-    incrementMutation(state) {
-      state.count++;
+  actions: {
+    incrementAction(context) {
+      setTimeout(function () { // １秒かかる通信
+        let data = 1;
+        console.log("waited a second");
+        context.commit("incrementMutation", data);
+      }, 1000);
     },
   },
 });
